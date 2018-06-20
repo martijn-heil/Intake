@@ -68,7 +68,7 @@ subprojects {
                 repoKey = project.version.contains("SNAPSHOT") ? 'libs-snapshot-local' : 'libs-release-local'
                 username = "${artifactory_user}"
                 password = "${artifactory_password}"
-                maven = true
+//                maven = true
                 
             }
         }
@@ -78,7 +78,7 @@ subprojects {
                 repoKey = 'repo'
                 username = "${artifactory_user}"
                 password = "${artifactory_password}"
-                maven = true
+//                maven = true
             }
         }
     }
