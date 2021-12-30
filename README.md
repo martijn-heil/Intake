@@ -136,8 +136,8 @@ Currently, Intake is available in sk89q's Maven repository:
 ```xml
 <repositories>
   <repository>
-    <id>maven.sk89q.com</id>
-    <url>http://maven.sk89q.com/repo/</url>
+    <id>maven.enginehub.org</id>
+    <url>https://maven.enginehub.org/repo/</url>
   </repository>
 </repositories>
 ```
@@ -146,7 +146,7 @@ or for Gradle users:
 
 ```groovy
 repositories {
-    maven { url "http://maven.sk89q.com/repo/" }
+    maven { url "https://maven.enginehub.org/repo/" }
 }
 ```
 
