@@ -16,28 +16,27 @@ buildscript {
     }
 }
 
-if (!project.hasProperty("artifactory_contextUrl")) ext.artifactory_contextUrl = "http://localhost"
+if (!project.hasProperty("artifactory_contextUrl")) ext.artifactory_contextUrl = "https://localhost"
 if (!project.hasProperty("artifactory_user")) ext.artifactory_user = "guest"
 if (!project.hasProperty("artifactory_password")) ext.artifactory_password = ""
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'checkstyle'
-    apply plugin: 'com.jfrog.artifactory-upload'
+    //apply plugin: 'checkstyle'
+    //apply plugin: 'com.jfrog.artifactory-upload'
 
     group = 'com.sk89q.intake'
     version = '4.2-SNAPSHOT'
 
-    checkstyle.configFile = new File(rootProject.projectDir, "config/checkstyle/checkstyle.xml")
+    //checkstyle.configFile = new File(rootProject.projectDir, "config/checkstyle/checkstyle.xml")
 
-    sourceCompatibility = 1.6
-    targetCompatibility = 1.6
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
         maven { url "https://maven.enginehub.org/repo/" }
         mavenCentral()
-        maven { url "http://repo.maven.apache.org/maven2" }
+        maven { url "https://repo.maven.apache.org/maven2" }
     }
 
     task sourcesJar(type: Jar, dependsOn: classes) {
@@ -56,30 +55,30 @@ subprojects {
         archives javadocJar
     }
 
-    build.dependsOn(checkstyleMain)
-    build.dependsOn(checkstyleTest)
+    //build.dependsOn(checkstyleMain)
+    //build.dependsOn(checkstyleTest)
     build.dependsOn(sourcesJar)
     build.dependsOn(javadocJar)
 
-    artifactory {
-        contextUrl = "${artifactory_contextUrl}"
-        publish {
-            repository {
-                repoKey = project.version.contains("SNAPSHOT") ? 'libs-snapshot-local' : 'libs-release-local'
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-//                maven = true
-                
-            }
-        }
-
-        resolve {
-            repository {
-                repoKey = 'repo'
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-//                maven = true
-            }
-        }
-    }
+//    artifactory {
+//        contextUrl = "${artifactory_contextUrl}"
+//        publish {
+//            repository {
+//                repoKey = project.version.contains("SNAPSHOT") ? 'libs-snapshot-local' : 'libs-release-local'
+//                username = "${artifactory_user}"
+//                password = "${artifactory_password}"
+////                maven = true
+//
+//            }
+//        }
+//
+//        resolve {
+//            repository {
+//                repoKey = 'repo'
+//                username = "${artifactory_user}"
+//                password = "${artifactory_password}"
+////                maven = true
+//            }
+//        }
+//    }
 }
